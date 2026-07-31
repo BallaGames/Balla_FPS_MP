@@ -33,7 +33,7 @@ public class ProjectilePool
     Projectile CreateProjectile(bool addToArray)
     {
         var p = UnityEngine.Object.Instantiate(prefab);
-        p.hideFlags = HideFlags.HideAndDontSave;
+        p.gameObject.hideFlags = HideFlags.HideInHierarchy;
         //assign to the projectile counter and then increment it
         p.globalProjCounter = nextProjID;
         p.localProjCounter = nextLocalProjID;

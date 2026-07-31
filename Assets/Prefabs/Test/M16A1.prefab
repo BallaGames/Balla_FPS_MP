@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 289218222077339481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 2.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.026, z: 0.657}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7672645509109718483}
@@ -4904,15 +4904,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.232
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: -0.629
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.47
+      value: 7.503
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4920,19 +4920,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9928509
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11936149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -13.711
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4945,6 +4945,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_Name
       value: M16A1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: bc3168002202e7546805f4ee670b58a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5016,12 +5028,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Firearm
   ShowTopMostFoldoutHeaderGroup: 1
-  roundsPerMinute: 200
-  timeBetweenShots: 0.3
+  roundsPerMinute: 60
+  timeBetweenShots: 1
   muzzle: {fileID: 1641745135826459823}
   fireInput: 0
   canAutoFire: 0
-  rays: 1
   maxDistance: 20
 --- !u!114 &3814468766407305710
 MonoBehaviour:
@@ -5037,6 +5048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileModule
   projectilePrefab: {fileID: 329205376650144536, guid: 0f150474714b9664ca0631f3ceb9ae0d, type: 3}
   projTypeNum: 0
+  maxMuzzleAngle: 0
+  projectileCount: 1
   muzzle: {fileID: 4992252425697010986}
   firearm: {fileID: 2948283215605992511}
 --- !u!114 &8046148437528432737
@@ -5051,7 +5064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 248070337
+  GlobalObjectIdHash: 699348146
   InScenePlacedSourceGlobalObjectIdHash: 169714113
   DeferredDespawnTick: 0
   Ownership: 1

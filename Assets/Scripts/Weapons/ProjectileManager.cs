@@ -34,10 +34,6 @@ public class ProjectileManager : NetworkBehaviour
     public LayerMask projectileMask;
 
     [SerializeField] int maxRequestsPerFrame, maxHits;
-    int queuedRequests;
-    public ProjectileRequest[] projRequestsA;
-    public ProjectileRequest[] projRequestsB;
-    bool arrayFlip;
 
     int[] poolIDs;
     int[] poolNums;
@@ -72,10 +68,6 @@ public class ProjectileManager : NetworkBehaviour
         pools = new();
         
         
-        projRequestsA = new ProjectileRequest[maxRequestsPerFrame];
-        projRequestsB = new ProjectileRequest[maxRequestsPerFrame];
-
-
         poolIDs = new int[maxRequestsPerFrame];
         poolNums = new int[maxRequestsPerFrame];
         positions = new Vector3[maxRequestsPerFrame];
@@ -93,7 +85,6 @@ public class ProjectileManager : NetworkBehaviour
             pools.Add(currProj.projTypeNum, pool);
         }
 
-        projRequestsA = new ProjectileRequest[maxRequestsPerFrame]; 
     }
     private void FixedUpdate()
     {
@@ -111,8 +102,8 @@ public class ProjectileManager : NetworkBehaviour
     void SyncProjectiles()
     {
 
-
-        for (int i = 0; i < aliveProjectiles.Count; i++)
+        //Make sure that we never execute more projectiles than we can per frame
+        for (int i = 0; i < math.min(aliveProjectiles.Count, maxRequestsPerFrame); i++)
         {
             poolIDs[i] = aliveProjectiles[i].localProjCounter;
             poolNums[i] = aliveProjectiles[i].projTypeNum;
@@ -198,7 +189,11 @@ public class ProjectileManager : NetworkBehaviour
             {
                 Debug.DrawLine(commands[projIndex].from, closestHit.point, Color.green, 1f);
                 //If the projectile is termianted, we will continue onto the next one immediately.
-                if (p.TickProjectile(Time.fixedDeltaTime, true, p.bounciness == 0, closestHit.point, closestHit.normal, commands[projIndex].direction))
+                if(ProjectileQueryHelper.TryGetDamageable(closestHit.collider, out var damageable))
+                {
+                    damageable.ReceiveDamage(p, closestHit.point, commands[projIndex].direction, p.CalculateDamage());
+                }
+                if (p.TickProjectile(Time.fixedDeltaTime, closestHit, commands[projIndex].direction))
                 {
                     //Debug.Log($"Terminated projectile {p.name}, likely hit.", p);
                 }
@@ -206,7 +201,7 @@ public class ProjectileManager : NetworkBehaviour
             else
             {
                 Debug.DrawRay(commands[projIndex].from, commands[projIndex].direction * commands[projIndex].distance, Color.red, 0.04f);
-                if (p.TickProjectile(Time.fixedDeltaTime, false, false, Vector3.zero, Vector3.zero, commands[x].direction))
+                if (p.TickProjectile(Time.fixedDeltaTime))
                 {
                     //Debug.Log($"Terminated projectile {p.name}, likely expired", p);
                 }
@@ -215,35 +210,23 @@ public class ProjectileManager : NetworkBehaviour
         }
         commands.Dispose();
         hits.Dispose();
-        queuedRequests = 0;
 
     }
 
     public static void QueueProjectile(ProjectileModule source)
     {
-        if(Instance.pools[source.projTypeNum].TryGetSingle(out Projectile p))
+        for (int i = 0; i < source.projectileCount; i++)
         {
-            p.trailFX.Stop();
-            p.Initialise(source);
-            if (Instance.arrayFlip)
-                SendProjectileToQueue(source, Instance.projRequestsB);
-            else
-                SendProjectileToQueue(source, Instance.projRequestsA);
-            Instance.aliveProjectiles.Add(p);
-            Instance.queuedRequests++;
-        }
+            if (Instance.pools[source.projTypeNum].TryGetSingle(out Projectile p))
+            {
+                p.trailFX.Stop();
+                p.Initialise(source);
+                Instance.aliveProjectiles.Add(p);
 
+            }
+        }
     }
-    static void SendProjectileToQueue(ProjectileModule source, ProjectileRequest[] array)
-    {
-        array[Instance.queuedRequests] = new()
-        {
-            direction = source.muzzle.forward,
-            origin = source.muzzle.position,
-            projTypeNum = source.projTypeNum,
-            source = source
-        };
-    }
+
     //sync projectiles with whoever is not the server. This should mean that the host/server does not update twice.
     [Rpc(SendTo.NotServer, DeferLocal = true)]
     public void SyncProjectilePosition_RPC(int[] localIDs, int[] poolNums, Vector3[] newPos, bool[] terminated)

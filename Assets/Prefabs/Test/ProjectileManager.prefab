@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3429660644980868277}
   - component: {fileID: 7763470692608334104}
   - component: {fileID: 3652975612162121336}
+  - component: {fileID: 67546899008556173}
   m_Layer: 0
   m_Name: ProjectileManager
   m_TagString: Untagged
@@ -53,8 +54,8 @@ MonoBehaviour:
   projectileMask:
     serializedVersion: 2
     m_Bits: 1
-  maxRequestsPerFrame: 256
-  maxHits: 16
+  maxRequestsPerFrame: 512
+  maxHits: 8
 --- !u!114 &3652975612162121336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3716024070
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3677372811
+  InScenePlacedSourceGlobalObjectIdHash: 1412301653
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -81,3 +82,25 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &67546899008556173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415017467093789474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f876b99f55247fb419d3969e95199ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PenetrateQuerier
+  materialSources:
+  - {fileID: 11400000, guid: aa90102cc50518044bce320cbb3878fd, type: 2}
+  - {fileID: 11400000, guid: 61b6d578d3e87004fbfa7080bd0737d1, type: 2}
+  - {fileID: 11400000, guid: b12d447fb9eb01441b46be93b8a88150, type: 2}
+  - {fileID: 11400000, guid: 6f3b33e80c74a1c4c879a928bcbeddab, type: 2}
+  - {fileID: 11400000, guid: b5bc2fda686922441a5f31a76fb6dc8c, type: 2}
+  penetrateDotThreshold: 0.6
+  penetrateMask:
+    serializedVersion: 2
+    m_Bits: 1

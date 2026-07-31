@@ -2,6 +2,7 @@ using Balla;
 using Unity.Netcode;
 using UnityEngine;
 
+[SelectionBase]
 public class TestFirearm : NetworkBehaviour
 {
     public float roundsPerMinute = 1200;
@@ -14,15 +15,13 @@ public class TestFirearm : NetworkBehaviour
 
     ProjectileModule module;
 
-    public int rays;
-    RaycastHit[] results = new RaycastHit[0];
     protected virtual bool CanFire => fireTimer <= 0;
+
 
     public float maxDistance;
 
     private void Start()
     {
-        SetupResults();
         if (module == null)
             module = GetComponent<ProjectileModule>();
     }
@@ -90,17 +89,5 @@ public class TestFirearm : NetworkBehaviour
         if(lastTime != timeBetweenShots)
             fireTimer = timeBetweenShots;
 
-        SetupResults();
     }
-
-    void SetupResults()
-    {
-        //pre-allocate space for raycast hits, ignores gc alloc
-        if (results == null || (rays > 0 && rays != results.Length))
-        {
-            results = new RaycastHit[rays];
-        }
-    }
-
-
 }

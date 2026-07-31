@@ -9,6 +9,9 @@ public class ProjectileModule : MonoBehaviour
     public Projectile projectilePrefab;
     [ReadOnly] public int projTypeNum;
 
+    public float maxMuzzleAngle = 5;
+    public uint projectileCount = 1;
+
     public Transform muzzle;
     public TestFirearm firearm;
 
