@@ -192,6 +192,8 @@ public class ProjectileManager : NetworkBehaviour
                 if(ProjectileQueryHelper.TryGetDamageable(closestHit.collider, out var damageable))
                 {
                     damageable.ReceiveDamage(p, closestHit.point, commands[projIndex].direction, p.CalculateDamage());
+                    if (p.effectSO != null)
+                        p.effectSO.effect.Execute(damageable);
                 }
                 if (p.TickProjectile(Time.fixedDeltaTime, closestHit, commands[projIndex].direction))
                 {

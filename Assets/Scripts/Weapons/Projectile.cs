@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -16,7 +17,7 @@ public class Projectile : DamageSource
     public int startCount;
 
     public VisualEffect trailFX;
-
+    public EffectScriptableObject effectSO;
 
     [SerializeField] float expireTime;
     [SerializeField] float life;
@@ -40,11 +41,16 @@ public class Projectile : DamageSource
     {
         penCheckHits = new RaycastHit[maxPenChecks];
     }
+    private void Start()
+    {
+        if (effectSO != null)
+            effectSO.effect.source = this;
+    }
 
     public bool initialised;
     public void Initialise(ProjectileModule source)
     {
-        trailFX.Simulate(1);
+        trailFX.Simulate(.8f);
         transform.position = source.muzzle.position;
         life = 0;
         bouncesDone = 0;
@@ -59,13 +65,12 @@ public class Projectile : DamageSource
         if (initialised)
             return;
         Debug.Log("particle init");
-        trailFX.Simulate(1);
+        trailFX.Simulate(.8f);
         if (trailFX != null)
             trailFX.Play();
 
         initialised = true;
     }
-
 
     
     /// <summary>

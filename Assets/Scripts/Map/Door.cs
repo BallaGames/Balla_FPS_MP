@@ -25,6 +25,8 @@ public class Door : BaseDamageable
 
     public bool destroyLocksWhenHingesBroken;
 
+    public bool canHingeDamage, canLockDamage;
+
     public ConfigurableJoint doorLock;
     public float lockMaxHealth;
    [SerializeField] protected float lockHealth;
@@ -81,7 +83,7 @@ public class Door : BaseDamageable
     {
         //convert point to local space
         Vector3 lp = transform.InverseTransformPoint(point);
-        if(CheckBox(lp, hingeBounds, hingePos))
+        if(canHingeDamage && CheckBox(lp, hingeBounds, hingePos) )
         {
             //Damage the hinge;
             Debug.Log("damaged door");
@@ -91,7 +93,7 @@ public class Door : BaseDamageable
                 lockHealth = 0;
             }
         }
-        else if(doorLock != null && CheckBox(lp, lockBounds, lockPos))
+        else if(doorLock != null && canLockDamage && CheckBox(lp, lockBounds, lockPos))
         {
             //damage the lock
             Debug.Log("damaged lock");
@@ -99,7 +101,7 @@ public class Door : BaseDamageable
         }
         isHingeBroken.Value = hingeHealth <= 0;
         isLockBroken.Value = hingeHealth <= 0 || lockHealth <= 0;
-        rb.AddForceAtPosition(source.forceMultiplier * damage * dir, point, ForceMode.Impulse);
+        rb.AddForceAtPosition(source.forceMult * damage * dir, point, ForceMode.Impulse);
 
 
 
@@ -115,7 +117,13 @@ public class Door : BaseDamageable
 
     public override void ReceiveDamage(DamageSource source, Vector3 dir, float damage)
     {
+        if(hinge != null && canHingeDamage)
+            hingeHealth -= damage;
+        rb.AddForce(source.forceMult * damage * dir, ForceMode.Impulse);
+    }
+
+    public override void ReceiveDamage(DamageSource source, float damage)
+    {
         hingeHealth -= damage;
-        rb.AddForce(source.forceMultiplier * damage * dir, ForceMode.Impulse);
     }
 }

@@ -1,10 +1,24 @@
 {
   "dependencies": {
+    "com.gitamend.improvedtimers": {
+      "version": "https://github.com/adammyhre/Unity-Improved-Timers.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0c93083e7968e5d2a7746b38d6d5a477d2b5b3ac"
+    },
     "com.heathen.steamworks": {
       "version": "file:com.heathen.steamworks",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
+    },
+    "com.mackysoft.serializereference-extensions": {
+      "version": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "5fadcb6564f0c6e988641e2e4a4aba4b6b1caafe"
     },
     "com.rlabrecque.steamworks.net": {
       "version": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#2025.161.0",

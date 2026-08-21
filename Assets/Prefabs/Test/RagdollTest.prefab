@@ -245,7 +245,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445128444890883866}
   serializedVersion: 5
-  m_Mass: 5.5625
+  m_Mass: 2.78125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 1005070461523943228}
   hasRB: 1
@@ -484,7 +485,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2218187944937936887}
   serializedVersion: 5
-  m_Mass: 5.5625
+  m_Mass: 2.78125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -562,6 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 8574832166072342566}
   hasRB: 1
@@ -903,7 +905,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2989837219114675607}
   serializedVersion: 5
-  m_Mass: 8.34375
+  m_Mass: 4.171875
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -981,6 +983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 4300515857120820317}
   hasRB: 1
@@ -1092,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RagdollController
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   ragdollBodies:
   - {fileID: 8936336459677729636}
   - {fileID: 2672746923360167925}
@@ -1174,7 +1178,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884133631370111974}
   serializedVersion: 5
-  m_Mass: 13.90625
+  m_Mass: 6.953125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1273,6 +1277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 2672746923360167925}
   hasRB: 1
@@ -1646,7 +1651,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4661344152484801306}
   serializedVersion: 5
-  m_Mass: 8.34375
+  m_Mass: 4.171875
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1724,6 +1729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 456564138096910480}
   hasRB: 1
@@ -1795,7 +1801,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5147115074942427174}
   serializedVersion: 5
-  m_Mass: 8.34375
+  m_Mass: 4.171875
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1873,6 +1879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 5102824162869876325}
   hasRB: 1
@@ -1941,7 +1948,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5223112418888770309}
   serializedVersion: 5
-  m_Mass: 13.90625
+  m_Mass: 6.953125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1973,6 +1980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 8936336459677729636}
   hasRB: 1
@@ -2494,7 +2502,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6983709720052608063}
   serializedVersion: 5
-  m_Mass: 5.5625
+  m_Mass: 2.78125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2572,6 +2580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 9087708045468762891}
   hasRB: 1
@@ -2643,7 +2652,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7071573159644459260}
   serializedVersion: 5
-  m_Mass: 8.34375
+  m_Mass: 4.171875
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2721,6 +2730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 755744106340221441}
   hasRB: 1
@@ -2946,7 +2956,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8227412968286300223}
   serializedVersion: 5
-  m_Mass: 5.5625
+  m_Mass: 2.78125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3024,6 +3034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 465070109726985340}
   hasRB: 1
@@ -3217,7 +3228,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8964794187003882313}
   serializedVersion: 5
-  m_Mass: 5.5625
+  m_Mass: 2.78125
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3295,6 +3306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   ShowTopMostFoldoutHeaderGroup: 1
+  canTakeEffects: 0
   owner: {fileID: 8572713313998228041}
   rb: {fileID: 4480514539233802540}
   hasRB: 1

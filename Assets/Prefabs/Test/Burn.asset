@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cbd9a5a5a998f479aff10cdb7ceb1b, type: 3}
+  m_Name: Burn
+  m_EditorClassIdentifier: Assembly-CSharp::EffectScriptableObject
+  effect:
+    rid: 4837744771394437422
+  effectPoolNum: 1
+  prefab: {fileID: 3849032807675543946, guid: 55fcc248922bb65479caa764b03490e5, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4837744771394437422
+      type: {class: Effect, ns: , asm: Assembly-CSharp}
+      data:
+        effects:
+        - rid: 4837744771394437423
+        poolnum: 0
+    - rid: 4837744771394437423
+      type: {class: DamageOverTimeEffect, ns: , asm: Assembly-CSharp}
+      data:
+        duration: 5
+        interval: 1
+        damagePerTick: 5

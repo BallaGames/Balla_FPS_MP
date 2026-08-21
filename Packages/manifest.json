@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "com.gitamend.improvedtimers": "https://github.com/adammyhre/Unity-Improved-Timers.git",
+    "com.mackysoft.serializereference-extensions": "https://github.com/mackysoft/Unity-SerializeReferenceExtensions.git?path=Assets/MackySoft/MackySoft.SerializeReferenceExtensions",
     "com.rlabrecque.steamworks.net": "https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#2025.161.0",
     "com.unity.ai.navigation": "2.0.10",
     "com.unity.cinemachine": "3.1.7",

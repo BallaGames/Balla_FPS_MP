@@ -31,9 +31,14 @@ public class RagdollController : BaseDamageable
 
     public override void ReceiveDamage(DamageSource source, Vector3 dir, float damage)
     {
-        SetStiffness(false);
+        ReceiveDamage(source, damage);
     }
     public override void ReceiveDamage(DamageSource source, Vector3 point, Vector3 dir, float damage)
+    {
+        ReceiveDamage(source, damage);
+    }
+
+    public override void ReceiveDamage(DamageSource source, float damage)
     {
         SetStiffness(false);
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7763470692608334104}
   - component: {fileID: 3652975612162121336}
   - component: {fileID: 67546899008556173}
+  - component: {fileID: 5665047780572584880}
   m_Layer: 0
   m_Name: ProjectileManager
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   projectilePrefabs:
   - {fileID: 329205376650144536, guid: 0f150474714b9664ca0631f3ceb9ae0d, type: 3}
+  - {fileID: 329205376650144536, guid: 099f26fa897808c4faa7eff0156d201d, type: 3}
   poolProjectileNums: 
   aliveProjectiles: []
   projectileMask:
@@ -104,3 +106,18 @@ MonoBehaviour:
   penetrateMask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &5665047780572584880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415017467093789474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af33dc095e063fa478f4f8b9d906ed3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectParticleManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  effectTypes:
+  - {fileID: 11400000, guid: 1acfbc25fe3449e4eaa9d1435e6e78f4, type: 2}
