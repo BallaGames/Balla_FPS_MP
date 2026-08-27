@@ -136,6 +136,10 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1934828397456330196, guid: e391ab6ecfc93d14d8207a5ada8f19dc, type: 3}
+      propertyPath: canLockDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934828397456330196, guid: e391ab6ecfc93d14d8207a5ada8f19dc, type: 3}
       propertyPath: hingeBounds.x
       value: 0.1
       objectReference: {fileID: 0}
@@ -150,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 1934828397456330196, guid: e391ab6ecfc93d14d8207a5ada8f19dc, type: 3}
       propertyPath: lockMaxHealth
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934828397456330196, guid: e391ab6ecfc93d14d8207a5ada8f19dc, type: 3}
+      propertyPath: canHingeDamage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1934828397456330196, guid: e391ab6ecfc93d14d8207a5ada8f19dc, type: 3}
       propertyPath: hingeMaxHealth

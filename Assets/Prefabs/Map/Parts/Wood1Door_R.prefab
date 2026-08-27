@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599354490261577907}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.5938427, z: 3.942}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -99,6 +99,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6492326014512456803}
     m_Modifications:
+    - target: {fileID: 630259052747175350, guid: 0ed33e146cf036c4f8473b1de2d2c70f, type: 3}
+      propertyPath: m_LowAngularXLimit.limit
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 630259052747175350, guid: 0ed33e146cf036c4f8473b1de2d2c70f, type: 3}
+      propertyPath: m_HighAngularXLimit.limit
+      value: 95
+      objectReference: {fileID: 0}
     - target: {fileID: 2600708869642936055, guid: 0ed33e146cf036c4f8473b1de2d2c70f, type: 3}
       propertyPath: m_Name
       value: WoodDoorSingle_R
@@ -144,8 +152,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6603716874737479808, guid: 0ed33e146cf036c4f8473b1de2d2c70f, type: 3}
+      propertyPath: m_InScenePlaced
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603716874737479808, guid: 0ed33e146cf036c4f8473b1de2d2c70f, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 501744598
+      value: 108931980
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

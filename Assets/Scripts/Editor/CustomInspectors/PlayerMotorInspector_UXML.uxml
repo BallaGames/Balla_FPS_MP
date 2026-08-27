@@ -1,0 +1,50 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/Scripts/Editor/CustomInspectors/PlayerMotor_USS.uss?fileID=7433441132597879392&amp;guid=3981233ca02c8ca4992ae370061c4748&amp;type=3#PlayerMotor_USS"/>
+    <ui:VisualElement class="unity-base-field__aligned" style="flex-grow: 1;">
+        <ui:EnumField label="Character State" value="Center" type="PlayerMotor+CharacterState, Assembly-CSharp" binding-path="characterState" class="unity-base-field__aligned"/>
+        <ui:Foldout text="Aim" name="Aim" enabled="true" value="true" view-data-key="aim" class="unity-base-field__aligned" style="background-color: rgba(204, 181, 140, 0.21);">
+            <uie:ObjectField label="Aim Transform" data-source-type="UnityEngine.Transform, UnityEngine.CoreModule" type="UnityEngine.Transform, UnityEngine.CoreModule" binding-path="aimRotate"/>
+            <ui:Toggle label="Invert X Aim" binding-path="invertX"/>
+            <ui:Toggle label="Invert Y Aim" binding-path="invertY"/>
+        </ui:Foldout>
+        <ui:Foldout text="Ground Movement" name="GroundMovement" view-data-key="ground" class="unity-base-field__aligned" style="background-color: rgba(207, 120, 185, 0.12);">
+            <ui:FloatField label="Walk Speed" value="42.2" binding-path="groundMoveSpeed"/>
+            <ui:FloatField label="Acceleration" value="42.2" binding-path="groundMoveSharpness"/>
+            <ui:FloatField label="Sprint Speed Boost" value="42.2" binding-path="additionalSprintSpeed"/>
+        </ui:Foldout>
+        <ui:Foldout text="Air Movement" name="AirMovement" view-data-key="air" style="background-color: rgba(125, 204, 113, 0.29);">
+            <ui:FloatField label="Air Acceleration" value="42.2" binding-path="airMoveForce"/>
+            <ui:FloatField label="Drag" value="42.2" binding-path="airDrag"/>
+            <ui:FloatField label="Jump Speed" value="42.2" binding-path="jumpVelocity"/>
+        </ui:Foldout>
+        <ui:Foldout text="Wallrunning" name="Wallrunning" view-data-key="wallrun" style="background-color: rgba(39, 126, 147, 0.15);">
+            <ui:FloatField label="Speed" value="42.2" binding-path="wallrunSpeed"/>
+            <ui:FloatField label="Acceleration" value="42.2" binding-path="wallrunAccel"/>
+            <ui:FloatField label="Check Distance" value="42.2" binding-path="wallCastDistance"/>
+            <ui:FloatField label="Idle Drop Speed" value="42.2" binding-path="wallrunIdleDecay"/>
+            <ui:FloatField label="Max Time" value="42.2" binding-path="maxWallrunTime"/>
+            <ui:FloatField label="Turn Speed" value="42.2" binding-path="wallrunTurnSpeed"/>
+            <ui:FloatField label="Lockout Time" value="42.2" binding-path="wallrunLockoutTime"/>
+            <ui:FloatField label="Wall Stick Force" value="42.2" binding-path="wallStickForce"/>
+            <ui:FloatField label="Cam Roll" value="42.2" binding-path="wallrunCamRoll"/>
+            <uie:CurveField label="Gravity Over Run" value="{0,0,0,0,0,0,Free,Free,False,None};{5,8,0,0,0,0,Free,Free,False,None};{10,4,0,0,0,0,Free,Free,False,None}+(ClampForever,ClampForever)" binding-path="wallrunGravityCurve"/>
+        </ui:Foldout>
+        <ui:Foldout text="Sliding" name="Sliding" view-data-key="slide" style="background-color: rgba(171, 98, 51, 0.19);">
+            <ui:FloatField label="Speed to Slide" value="42.2" binding-path="minSlideSpeed"/>
+            <ui:FloatField label="Slide Min Speed" value="42.2" binding-path="slideStopSpeed"/>
+            <ui:FloatField label="Drag" value="42.2" binding-path="slideDrag"/>
+            <ui:FloatField label="Start Boost" value="42.2" binding-path="slideStartBoost"/>
+            <ui:FloatField label="Crouch Speed" value="42.2" binding-path="crouchSpeed"/>
+            <ui:FloatField label="Slow Walk Multiplier" value="42.2" binding-path="slowWalkSpeedMult"/>
+            <ui:Vector2Field label="Stand Height" binding-path="standHeight" tooltip="X is head height, y is capsule height"/>
+            <ui:Vector2Field label="Crouch Height" binding-path="crouchHeight" tooltip="X is head height, y is capsule height"/>
+            <ui:Vector2Field label="Slide Height" binding-path="slideHeight" tooltip="X is head height, y is capsule height"/>
+        </ui:Foldout>
+        <ui:Foldout text="Ladder Movement" name="LadderMovement" view-data-key="ladder"/>
+        <ui:Foldout text="Downed Movement" name="DownedMovement" view-data-key="downed"/>
+        <ui:Foldout text="Misc" name="Misc" view-data-key="misc" class="unity-base-field__aligned" style="background-color: rgba(145, 84, 183, 0.3);">
+            <ui:Vector3Field label="Gravity" binding-path="gravity" name="Gravity" class="unity-base-field__aligned"/>
+            <uie:ColorField label="Debug Colour" value="rgb(0, 255, 255)" binding-path="debugColour"/>
+        </ui:Foldout>
+    </ui:VisualElement>
+</ui:UXML>

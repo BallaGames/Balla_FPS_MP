@@ -33,6 +33,9 @@ public class ProjectileManager : NetworkBehaviour
     int staggerChunkSize = 128;
     public LayerMask projectileMask;
 
+    public bool doPenetration;
+    public bool doRicochet;
+
     [SerializeField] int maxRequestsPerFrame, maxHits;
 
     int[] poolIDs;

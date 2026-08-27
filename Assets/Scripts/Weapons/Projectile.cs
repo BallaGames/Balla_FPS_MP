@@ -88,7 +88,7 @@ public class Projectile : DamageSource
         bool terminated = false;
         transform.position = hit.point;
         bool bounced = false;
-        if (bounces > 0 && bouncesDone < bounces)
+        if (ProjectileManager.Instance.doRicochet && bounces > 0 && bouncesDone < bounces)
         {
             if (Mathf.Abs(Vector3.Dot(hit.normal, direction)) < bounceThreshold)
             {
@@ -97,7 +97,7 @@ public class Projectile : DamageSource
                 bounced = true;
             }
         }
-        if (!bounced)
+        if (ProjectileManager.Instance.doPenetration && !bounced)
         {
             //We can only penetrate if we didn't bounce
             //And we'll terminate the projectile if we can't penetrate.

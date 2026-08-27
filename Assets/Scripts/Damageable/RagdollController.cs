@@ -1,45 +1,41 @@
+using System.IO.IsolatedStorage;
+using Unity.Netcode;
 using UnityEngine;
 
-public class RagdollController : BaseDamageable
+public class RagdollController : NetworkBehaviour
 {
     public Rigidbody[] ragdollBodies;
-    public bool stiff;
+    public NetworkVariable<bool> stiffness = new();
     bool lastStiff;
-    protected override void OnValidate()
+    void OnValidate()
     {
-        base.OnValidate();
         if (ragdollBodies.Length == 0)
         {
             ragdollBodies = GetComponentsInChildren<Rigidbody>();
         }
-        SetStiffness(stiff);
+
+        if (IsServer)
+            stiffness.Value = true;
+
+        stiffness.OnValueChanged += OnStiffnessChanged;
+
+        OnStiffnessChanged(false, true);
     }
 
-    void SetStiffness(bool stiffness)
+    public void OnStiffnessChanged(bool previous, bool current)
     {
-        stiff = stiffness;
+        SetStiffness();
+    }
 
-        if (lastStiff != stiff)
+    void SetStiffness()
+    {
+        if (lastStiff != stiffness.Value)
         {
             for (int i = 0; i < ragdollBodies.Length; i++)
             {
-                ragdollBodies[i].isKinematic = stiff;
+                ragdollBodies[i].isKinematic = stiffness.Value;
             }
-            lastStiff = stiff;
+            lastStiff = stiffness.Value;
         }
-    }
-
-    public override void ReceiveDamage(DamageSource source, Vector3 dir, float damage)
-    {
-        ReceiveDamage(source, damage);
-    }
-    public override void ReceiveDamage(DamageSource source, Vector3 point, Vector3 dir, float damage)
-    {
-        ReceiveDamage(source, damage);
-    }
-
-    public override void ReceiveDamage(DamageSource source, float damage)
-    {
-        SetStiffness(false);
     }
 }

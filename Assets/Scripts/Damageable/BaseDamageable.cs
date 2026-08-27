@@ -47,12 +47,17 @@ public abstract class BaseDamageable : NetworkBehaviour
 
     public virtual void OnDie(DamageSource deathSource)
     {
-        foreach (var item in effects)
+        if (canTakeEffects)
         {
-            item.OnCompleted -= RemoveEffect;
-            item.Cancel();
+            foreach (var item in effects)
+            {
+                item.OnCompleted -= RemoveEffect;
+                item.Cancel();
+            }
+            effects.Clear();
         }
-        effects.Clear();
+
+        OnDieOnClient_RPC();
     }
 
 
@@ -76,5 +81,13 @@ public abstract class BaseDamageable : NetworkBehaviour
             col = GetComponent<Collider>();
     }
 
+    [Rpc(SendTo.ClientsAndHost)]
+    protected void OnDieOnClient_RPC()
+    {
+        OnClientDieRecevied();
+    }
+    protected virtual void OnClientDieRecevied()
+    {
 
+    }
 }
