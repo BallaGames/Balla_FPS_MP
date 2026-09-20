@@ -246,7 +246,7 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
 
 
         aimRotate.localPosition = Vector3.MoveTowards(aimRotate.localPosition, Motor.CharacterUp * targHeight.y, crouchSpeed * deltaTime);
-        Motor.SetCapsuleDimensions(Motor.Capsule.radius, currHeight.x, 0);
+        Motor.SetCapsuleDimensions(Motor.Capsule.radius, currHeight.x, (standHeight.x - currHeight.x) * -0.5f);
 
 
         switch (characterState)
@@ -326,14 +326,14 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
             currentVelocity += Vector3.Cross(Motor.CharacterRight, Motor.GroundingStatus.GroundNormal) * slideStartBoost;
             slideLaunching = false;
         }
-        if (!Motor.GroundingStatus.IsStableOnGround || Motor.Velocity.magnitude <= slideStopSpeed)
+        if (!crouching || !Motor.GroundingStatus.IsStableOnGround || Motor.Velocity.magnitude <= slideStopSpeed)
         {
             characterState = CharacterState.Air;
             return;
         }
 
         //Apply gravity. On a flat surface, this won't apply.
-        currentVelocity += Vector3.ProjectOnPlane(gravity, Motor.GroundingStatus.GroundNormal);
+        currentVelocity += Vector3.ProjectOnPlane(gravity, Motor.GroundingStatus.GroundNormal) * deltaTime;
         //Apply steer and drag
         currentVelocity += (InputManager.MoveInput.x * slideSteerForce * Motor.CharacterRight) - (deltaTime * slideDrag * currentVelocity);
 

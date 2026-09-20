@@ -18316,6 +18316,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1492368480599150459, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
+      propertyPath: debugColour.b
+      value: 0.27171594
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492368480599150459, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
+      propertyPath: debugColour.g
+      value: 0.6144331
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492368480599150459, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
+      propertyPath: debugColour.r
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492368480599150459, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
+      propertyPath: crouchHeight.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492368480599150459, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
+      propertyPath: crouchHeight.y
+      value: -0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3235410475431365798, guid: 448ce8e9aa986624e8acc8a98b941198, type: 3}
       propertyPath: m_Name
       value: Player
