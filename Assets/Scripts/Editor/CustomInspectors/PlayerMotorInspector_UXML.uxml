@@ -16,8 +16,10 @@
             <ui:FloatField label="Air Acceleration" value="42.2" binding-path="airMoveForce"/>
             <ui:FloatField label="Drag" value="42.2" binding-path="airDrag"/>
             <ui:FloatField label="Jump Speed" value="42.2" binding-path="jumpVelocity"/>
+            <ui:IntegerField label="Coyote Frames" value="42" binding-path="coyoteFrames"/>
         </ui:Foldout>
-        <ui:Foldout text="Wallrunning" name="Wallrunning" view-data-key="wallrun" style="background-color: rgba(39, 126, 147, 0.15);">
+        <ui:Foldout text="Wallrunning" name="Wallrunning" view-data-key="wallrun" enabled="false" style="background-color: rgba(39, 126, 147, 0.15);">
+            <ui:Toggle label="Can Wallrun" binding-path="canWallrun"/>
             <ui:FloatField label="Speed" value="42.2" binding-path="wallrunSpeed"/>
             <ui:FloatField label="Acceleration" value="42.2" binding-path="wallrunAccel"/>
             <ui:FloatField label="Check Distance" value="42.2" binding-path="wallCastDistance"/>
@@ -42,6 +44,15 @@
         </ui:Foldout>
         <ui:Foldout text="Ladder Movement" name="LadderMovement" view-data-key="ladder"/>
         <ui:Foldout text="Downed Movement" name="DownedMovement" view-data-key="downed"/>
+        <ui:Foldout text="Mantle" name="MantleMovement" style="background-color: rgb(146, 116, 106);">
+            <ui:Toggle label="Can Mantle" binding-path="canMantle"/>
+            <ui:FloatField label="Mantle Speed" value="42.2" binding-path="mantleSpeed"/>
+            <ui:FloatField label="Max Mantle Height" value="42.2" binding-path="mantleMaxHeight"/>
+            <ui:FloatField label="Max Mantle Distance" value="42.2" binding-path="mantleDistance"/>
+            <uie:CurveField label="Lateral Mantle" value="{0,0,0,0,0,0,Free,Free,False,None};{5,8,0,0,0,0,Free,Free,False,None};{10,4,0,0,0,0,Free,Free,False,None}+(ClampForever,ClampForever)" binding-path="lateralMantleCurve" style="height: 47px;"/>
+            <uie:CurveField label="Vertical Mantle" value="{0,0,0,0,0,0,Free,Free,False,None};{5,8,0,0,0,0,Free,Free,False,None};{10,4,0,0,0,0,Free,Free,False,None}+(ClampForever,ClampForever)" binding-path="verticalMantleCurve" style="height: 47px;"/>
+            <uie:LayerMaskField label="Mantle Mask" binding-path="mantleMask"/>
+        </ui:Foldout>
         <ui:Foldout text="Misc" name="Misc" view-data-key="misc" class="unity-base-field__aligned" style="background-color: rgba(145, 84, 183, 0.3);">
             <ui:Vector3Field label="Gravity" binding-path="gravity" name="Gravity" class="unity-base-field__aligned"/>
             <uie:ColorField label="Debug Colour" value="rgb(0, 255, 255)" binding-path="debugColour"/>

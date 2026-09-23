@@ -75,8 +75,11 @@ GameObject:
   - component: {fileID: 7186497371501554422}
   - component: {fileID: 17168501124435252}
   - component: {fileID: 1537953941251708912}
+  - component: {fileID: 2333781639464011469}
   - component: {fileID: 1492368480599150459}
   - component: {fileID: 1097269699831002466}
+  - component: {fileID: -552787030241662544}
+  - component: {fileID: 3022054087449873382}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -166,6 +169,33 @@ MonoBehaviour:
   CheckMovementInitialOverlaps: 1
   KillVelocityWhenExceedMaxMovementIterations: 1
   KillRemainingMovementWhenExceedMaxMovementIterations: 1
+--- !u!114 &2333781639464011469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235410475431365798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2848684888
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  m_InScenePlacedDisabledByDefault: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  m_InScenePlaced: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &1492368480599150459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b3870053ebb174b845e15515855b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
+  ShowTopMostFoldoutHeaderGroup: 1
+  sprintRestricted: 0
   Motor: {fileID: 1537953941251708912}
   characterState: 0
   aimRotate: {fileID: 8006691570910170862}
@@ -193,10 +225,12 @@ MonoBehaviour:
   airMoveForce: 1
   airDrag: 0.15
   jumpVelocity: 4.5
+  coyoteFrames: 7
   ladderSpeed: 0
   ladderSlideSpeed: 0
   downedMoveSpeed: 0
   downedRotateMult: 0
+  canWallrun: 0
   wallrunSpeed: 12
   wallCastDistance: 0.8
   wallrunIdleDecay: 1
@@ -230,15 +264,71 @@ MonoBehaviour:
   wallrunLockoutTime: 0.6
   wallStickForce: 0.5
   wallrunCamRoll: 8
+  canMantle: 1
+  mantleSpeed: 4
+  lateralMantleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  verticalMantleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  mantleDistance: 0.55
+  mantleMaxHeight: 1.5
+  mantleMask:
+    serializedVersion: 2
+    m_Bits: 1
   gravity: {x: 0, y: -9.81, z: 0}
-  debugColour: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0.7607843}
-  crouchHeight: {x: 1, y: 0}
+  debugColour: {r: 0.8113208, g: 0.6144331, b: 0.27171594, a: 0.7607843}
+  crouchHeight: {x: 1.2, y: -0.7}
   slideHeight: {x: 0.9, y: 0}
   standHeight: {x: 1.8, y: 0}
-  crouchSpeed: 14
+  crouchSpeed: 6
   slowWalkSpeedMult: 0.5
   minSlideSpeed: 2
   slideStopSpeed: 1.5
+  slideLandStartSpeed: 0
 --- !u!114 &1097269699831002466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +343,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
   cineCam: {fileID: 3093258516200818605}
   rollLerpSpeed: 4
+--- !u!114 &-552787030241662544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235410475431365798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da52bf8bbc1de48cfb221a6ff30f7972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Multiplayer.Center.NetcodeForGameObjectsExample::Unity.Multiplayer.Center.NetcodeForGameObjectsExample.ClientNetworkTransform
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkTransformExpanded: 1
+  AutoOwnerAuthorityTickOffset: 1
+  PositionInterpolationType: 1
+  RotationInterpolationType: 1
+  ScaleInterpolationType: 0
+  PositionLerpSmoothing: 1
+  PositionMaxInterpolationTime: 0.1
+  RotationLerpSmoothing: 1
+  RotationMaxInterpolationTime: 0.1
+  ScaleLerpSmoothing: 1
+  ScaleMaxInterpolationTime: 0.1
+  AuthorityMode: 1
+  TickSyncChildren: 0
+  UseUnreliableDeltas: 0
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  SwitchTransformSpaceWhenParented: 0
+  Interpolate: 1
+  SlerpPosition: 0
+--- !u!114 &3022054087449873382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3235410475431365798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d807bd54920a843ab057e7d73d46ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGlue
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &3904934077204050750
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +629,7 @@ MonoBehaviour:
   Priority:
     Enabled: 0
     m_Value: 0
-  OutputChannel: 1
+  OutputChannel: 2
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0

@@ -11,10 +11,14 @@ public class PlayerMotorEditor : Editor
     {
         VisualElement inspector = new VisualElement();
 
-        if(vta != null)
+        if (vta != null)
         {
             VisualElement uxmlcontent = vta.CloneTree();
             inspector.Add(uxmlcontent);
+        }
+        else
+        {
+            inspector = base.CreateInspectorGUI();
         }
 
         return inspector;

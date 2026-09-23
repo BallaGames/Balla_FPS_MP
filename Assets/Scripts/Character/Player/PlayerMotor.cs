@@ -2,10 +2,15 @@ using KinematicCharacterController;
 using System;
 using Unity.Cinemachine;
 using Unity.Mathematics;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
-public class PlayerMotor : MonoBehaviour, ICharacterController
+[RequireComponent(typeof(PlayerCamera))]
+public class PlayerMotor : NetworkBehaviour, ICharacterController
 {
+    public bool sprintRestricted;
+
     public KinematicCharacterMotor Motor;
     PlayerCamera playerCam;
     public enum CharacterState
@@ -18,9 +23,10 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
         Zipline = 16,
         Downed = 32,
         Dead = 64,
+        Vault = 128,
     }
     public CharacterState characterState;
-    bool Sprinting => InputManager.MoveInput.y > .7f && characterState == CharacterState.Grounded && InputManager.SprintInput && !crouching;
+    bool Sprinting => InputManager.MoveInput.y > .7f && characterState == CharacterState.Grounded && InputManager.SprintInput && !crouching && !sprintRestricted;
     float aimPitch, aimYaw, wallrunYaw;
     internal float aimPitchDelta, aimYawDelta;
 
@@ -47,6 +53,8 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     public float airMoveForce;
     public float airDrag = 0.1f;
     public float jumpVelocity = 2f;
+    public int coyoteFrames;
+    int coyoteFramesConsumed;
 
     [Header("Ladder Movement")]
     public float ladderSpeed;
@@ -57,6 +65,7 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     public float downedRotateMult;
 
     [Header("Wallrunning")]
+    public bool canWallrun;
     public float wallrunSpeed;
     public float wallCastDistance;
     public float wallrunIdleDecay = 2;
@@ -72,8 +81,18 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     float wallrunSide;
     float wallrunTime;
     float targetAngle;
-    
 
+    [Header("Mantle")]
+    public bool canMantle;
+    public float mantleSpeed;
+    public AnimationCurve lateralMantleCurve;
+    public AnimationCurve verticalMantleCurve;
+    public float mantleDistance;
+    public float mantleMaxHeight;
+    public LayerMask mantleMask;
+    bool mantling;
+    float mantleProgress, mantleRate;
+    Vector3 mantleStart, mantleEnd;
 
     [Header("Misc")]
     public Vector3 gravity;
@@ -91,22 +110,32 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     public float slowWalkSpeedMult = 0.5f;
     public float minSlideSpeed;
     public float slideStopSpeed;
+    public float slideLandStartSpeed;
     Vector2 currHeight, targHeight;
+
+    protected override void OnNetworkPostSpawn()
+    {
+        base.OnNetworkPostSpawn();
+        if (IsOwner)
+        {
+            InputManager.OnLookPerform += Input_OnLookPerform;
+            InputManager.OnJumpPerform += Input_OnJumpPerform;
+
+            InputManager.OnSprintPerform += TrySprint;
+            InputManager.OnSprintCancel += TrySprint;
+
+            InputManager.OnCrouchTogglePerform += ToggleCrouch;
+            InputManager.OnCrouchHoldPerform += HoldCrouch;
+            InputManager.OnCrouchHoldCancel += HoldCrouch;
+        }
+    }
+
+
+
     private void Awake()
     {
         Motor.CharacterController = this;
         playerCam = GetComponent<PlayerCamera>();
-
-        InputManager.OnLookPerform += Input_OnLookPerform;
-        InputManager.OnJumpPerform += Input_OnJumpPerform;
-
-        InputManager.OnSprintPerform += TrySprint;
-        InputManager.OnSprintCancel += TrySprint;
-
-        InputManager.OnCrouchTogglePerform += ToggleCrouch;
-        InputManager.OnCrouchHoldPerform += HoldCrouch;
-        InputManager.OnCrouchHoldCancel += HoldCrouch;
-
     }
 
     private void HoldCrouch()
@@ -148,6 +177,7 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
             case CharacterState.Ladder:
                 break;
             case CharacterState.Wallrun:
+            case CharacterState.Vault:
                 wallrunYaw = Mathf.Clamp((wallrunYaw + ((invertX ? -1 : 1) * InputManager.LookInput.x * InputManager.AimSensitivity)) % 360, -89, 89);
                 break;
             case CharacterState.Dead:
@@ -162,54 +192,49 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
 
     private void LateUpdate()
     {
-        playerCam.UpdateCam(aimYaw + wallrunYaw, aimPitch, characterState == CharacterState.Wallrun ? wallrunCamRoll * wallrunSide : 0);
+        if(IsOwner)
+            playerCam.UpdateCam(aimYaw + wallrunYaw, aimPitch, characterState == CharacterState.Wallrun ? wallrunCamRoll * wallrunSide : 0);
     }
 
+    #region misc
     public void SetInput()
     {
 
     }
-
     public void AfterCharacterUpdate(float deltaTime)
     {
         
     }
-
     public void BeforeCharacterUpdate(float deltaTime)
     {
 
     }
-
     public bool IsColliderValidForCollisions(Collider coll)
     {
         return true;
     }
-
     public void OnDiscreteCollisionDetected(Collider hitCollider)
     {
 
     }
-
     public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
     {
 
     }
-
     public void OnMovementHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)
     {
 
     }
-
     public void PostGroundingUpdate(float deltaTime)
     {
 
     }
-
     public void ProcessHitStabilityReport(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, Vector3 atCharacterPosition, Quaternion atCharacterRotation, ref HitStabilityReport hitStabilityReport)
     {
 
     }
 
+    #endregion misc
     public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
     {
         currentRotation = Quaternion.Euler(0, aimYaw, 0);
@@ -219,24 +244,35 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
         //basically, we want to ONLY be able to cancel any of the other states when we meet their cancel condition; usually the character will reset itself back to the air state to be checked on the next frame.
         if (!(characterState == CharacterState.Grounded || characterState == CharacterState.Air))
             return;
-        Debug.Log("checking character state");
         if (Motor.GroundingStatus.IsStableOnGround)
         {
+            if(!lastGrounded && crouching && Motor.Velocity.magnitude > groundMoveSpeed * 1.1f)
+            {
+                //Skip grounding and slide instead if we land stable on something and are going fast enough to slide.
+                characterState = CharacterState.Slide;
+                return;
+            }
             characterState = CharacterState.Grounded;
+            coyoteFramesConsumed = 0;
         }
         else
         {
             characterState = CharacterState.Air;
         }
+        lastGrounded = Motor.GroundingStatus.IsStableOnGround;
     }
     public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
     {
+        if (!IsOwner)
+            return;
+
+
         CheckCharacterState(ref currentVelocity, deltaTime);
         if(wallrunLock > 0)
             wallrunLock -= deltaTime;
-        if (characterState == CharacterState.Grounded)
+        if (characterState == CharacterState.Grounded || characterState == CharacterState.Slide)
         {
-            targHeight = (crouching ? crouchHeight : standHeight);
+            targHeight = ((crouching | characterState==CharacterState.Slide) ? crouchHeight : standHeight);
         }
         else
         {
@@ -257,6 +293,10 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
             case CharacterState.Air:
                 currentVelocity += gravity * deltaTime;
                 AirMovement(ref currentVelocity, deltaTime);
+                CheckWallrun();
+                //Only check vault if we are attempting to move forwards OR trying to "jump"
+                if(InputManager.MoveInput.y > 0.3f || InputManager.JumpInput)
+                    CheckVault();
                 break;
             case CharacterState.Slide:
                 SlideMovement(ref currentVelocity, deltaTime);
@@ -267,10 +307,16 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
                 WallrunMovement(ref currentVelocity, deltaTime);
                 break;
             case CharacterState.Zipline:
+
                 break;
             case CharacterState.Downed:
+
                 break;
             case CharacterState.Dead:
+
+                break;
+            case CharacterState.Vault:
+                VaultMovement(ref currentVelocity, deltaTime);
                 break;
             default:
                 break;
@@ -279,6 +325,76 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     }
 
     #region Movement
+    void CheckVault()
+    {
+        if (wallrunLock > 0)
+            return;
+
+
+        //Checks forwards to make sure there's something to mantle to. Uses a capsule cast to ensure we can climb the surface.
+        if(Physics.CapsuleCast(transform.position - (0.45f * Motor.Capsule.height * transform.up),
+            transform.position + (0.45f * Motor.Capsule.height * transform.up),
+            Motor.Capsule.radius * 0.9f,
+            Motor.CharacterForward, out RaycastHit mHit, mantleDistance, mantleMask, QueryTriggerInteraction.Ignore) 
+            && Mathf.Abs(Vector3.Dot(transform.up, mHit.normal)) < 0.1f && Mathf.Abs(Vector3.Dot(transform.forward, mHit.normal)) >= 0.65f) 
+        {
+            Vector3 point = new(mHit.point.x, transform.position.y, mHit.point.z);
+            //If this downward ray hits then we're able to mantle onto the surface in front of us if there's enough upward space.
+            if(Physics.SphereCast(point - (mHit.normal * Motor.Capsule.radius)
+                + (transform.up * mantleMaxHeight), 
+                Motor.Capsule.radius, -transform.up, out RaycastHit downHit, mantleMaxHeight, mantleMask))
+            {
+                //If this one does NOT hit, then all is gucki
+                if(!Physics.Raycast(downHit.point, transform.up, out RaycastHit upHit, mantleMaxHeight, mantleMask))
+                {
+                    mantleStart = transform.position;
+                    mantleEnd = downHit.point + (0.5f * Motor.Capsule.height * transform.up);
+                    StartMantle();
+                }
+            }
+        }
+        else
+        {
+            //didnt hit anything for mantle. Cannot mantle.
+        }
+    }
+    void StartMantle()
+    {
+        characterState = CharacterState.Vault;
+        mantleRate = mantleSpeed / Vector3.Distance(mantleStart, mantleEnd);
+        Motor.SetCapsuleCollisionsActivation(false);
+        mantleProgress = 0;
+        mantling = true;
+    }
+    void VaultMovement(ref Vector3 currentVelocity, float deltaTime)
+    {
+        if (!mantling)
+        {
+            EndMantle();
+            return;
+        }
+        float latLerp = lateralMantleCurve.Evaluate(mantleProgress);
+        Vector3 position = new(Mathf.LerpUnclamped(mantleStart.x, mantleEnd.x, latLerp),
+            Mathf.LerpUnclamped(mantleStart.y, mantleEnd.y, verticalMantleCurve.Evaluate(mantleProgress)), 
+            Mathf.LerpUnclamped(mantleStart.z, mantleEnd.z, latLerp));
+        currentVelocity = Motor.GetVelocityForMovePosition(transform.position, position, deltaTime);
+        mantleProgress += mantleRate * deltaTime;
+        if (jumpRequested)
+        {
+            TryJump(ref currentVelocity);
+        }
+        if (mantleProgress >= 1)
+            EndMantle();
+            
+    }
+
+    void EndMantle()
+    {
+        mantling = false;
+        CancelWallrun();
+        Motor.SetCapsuleCollisionsActivation(true);
+    }
+
     void GroundMovement(ref Vector3 currentVelocity, float deltaTime)
     {
         float currVelocityMag = currentVelocity.magnitude;
@@ -286,7 +402,9 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
         
         currentVelocity = Motor.GetDirectionTangentToSurface(currentVelocity, groundNormal) * currVelocityMag;
 
-        Vector3 targetVelocity = Vector3.ClampMagnitude((Motor.CharacterRight * InputManager.MoveInput.x) + (Motor.CharacterForward * InputManager.MoveInput.y), 1) * groundMoveSpeed;
+        Vector3 targetVelocity = Vector3.ClampMagnitude((Motor.CharacterRight * InputManager.MoveInput.x) + (Motor.CharacterForward * InputManager.MoveInput.y), 1) 
+            * groundMoveSpeed * (crouching ? slowWalkSpeedMult : 1);
+
         if (Sprinting)
         {
             targetVelocity += additionalSprintSpeed * InputManager.MoveInput.y * Motor.CharacterForward;
@@ -298,6 +416,10 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
         Debug.DrawRay(transform.position, Motor.CharacterForward, Color.green, deltaTime);
         Debug.DrawRay(transform.position, Motor.CharacterRight, Color.red, deltaTime);
 
+        CheckJump(ref currentVelocity);
+    }
+    void CheckJump(ref Vector3 currentVelocity)
+    {
         if (jumpRequested)
         {
             TryJump(ref currentVelocity);
@@ -306,7 +428,15 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
     void AirMovement(ref Vector3 currentVelocity, float deltaTime)
     {
         currentVelocity += (airMoveForce * deltaTime * Vector3.ClampMagnitude((Motor.CharacterRight * InputManager.MoveInput.x) + (Motor.CharacterForward * InputManager.MoveInput.y), 1)) - (airDrag * Time.deltaTime * currentVelocity);
-        if (wallrunLock <= 0 && TryStartWallrun())
+        if(coyoteFramesConsumed < coyoteFrames)
+        {
+            CheckJump(ref currentVelocity);
+            coyoteFramesConsumed++;
+        }
+    }
+    void CheckWallrun()
+    {
+        if (canWallrun && wallrunLock <= 0 && TryStartWallrun())
         {
             StartWallrun();
             return;
@@ -331,7 +461,7 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
             characterState = CharacterState.Air;
             return;
         }
-
+        CheckJump(ref currentVelocity);
         //Apply gravity. On a flat surface, this won't apply.
         currentVelocity += Vector3.ProjectOnPlane(gravity, Motor.GroundingStatus.GroundNormal) * deltaTime;
         //Apply steer and drag
@@ -403,6 +533,11 @@ public class PlayerMotor : MonoBehaviour, ICharacterController
         if(characterState == CharacterState.Wallrun)
         {
             currentVelocity += jumpVelocity * wallNormal;
+            CancelWallrun();
+        }
+        else if(characterState == CharacterState.Vault)
+        {
+            currentVelocity = jumpVelocity * (-transform.forward + transform.up).normalized;
             CancelWallrun();
         }
         jumpRequested = false;

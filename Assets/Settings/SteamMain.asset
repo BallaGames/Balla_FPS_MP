@@ -1,0 +1,520 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9083761058935857313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] backward_thrust'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: backward_thrust
+--- !u!114 &-8999730666946829284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c85766c32eadc4e8a72da7933e8fab, type: 3}
+  m_Name: '[Stat Int] NumLosses'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.IntStatObject
+  data:
+    id: NumLosses
+--- !u!114 &-8733567556866382149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9584b88d43e47d5409ee2ad6a4c0c68b, type: 3}
+  m_Name: '[Stat AvgRate] AverageSpeed'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AvgRateStatObject
+  data:
+    id: AverageSpeed
+--- !u!114 &-8626679218451038395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_down'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_down
+--- !u!114 &-7586749589795976714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] forward_thrust'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: forward_thrust
+--- !u!114 &-6634375376915176214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] analog_controls'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 0
+  actionName: analog_controls
+--- !u!114 &-6194961998222170762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] fire_lasers'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: fire_lasers
+--- !u!114 &-6091189459371398433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c85766c32eadc4e8a72da7933e8fab, type: 3}
+  m_Name: '[Stat Int] Unused2'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.IntStatObject
+  data:
+    id: Unused2
+--- !u!114 &-5037848677785503180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c85766c32eadc4e8a72da7933e8fab, type: 3}
+  m_Name: '[Stat Int] NumWins'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.IntStatObject
+  data:
+    id: NumWins
+--- !u!114 &-4983887044868387655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74db9acd0c6972c449f7d85fe248a7a3, type: 3}
+  m_Name: '[LdrBrd] Feet Traveled'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.LeaderboardObject
+  createIfMissing: 0
+  sortMethod: 1
+  displayType: 1
+  apiName: Feet Traveled
+  maxDetailEntries: 0
+  UserEntryUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-4453579329745014787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_right'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_right
+--- !u!114 &-3961327671048134529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875677f33105c5b45bb7e7641fc75837, type: 3}
+  m_Name: '[Ach] ACH_TRAVEL_FAR_SINGLE'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AchievementObject
+  data:
+    id: ACH_TRAVEL_FAR_SINGLE
+--- !u!114 &-3722123063667875975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] turn_left'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: turn_left
+--- !u!114 &-2922288281124395891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875677f33105c5b45bb7e7641fc75837, type: 3}
+  m_Name: '[Ach] NEW_ACHIEVEMENT_0_4'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AchievementObject
+  data:
+    id: NEW_ACHIEVEMENT_0_4
+--- !u!114 &-1425089029179993062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] pause_menu'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: pause_menu
+--- !u!114 &-1402885460712794862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_up'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_up
+--- !u!114 &-782411012424460061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] turn_right'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: turn_right
+--- !u!114 &-326600000575602546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_select'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_select
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 303d26a337ee62e4392ff75b6b3a8c05, type: 3}
+  m_Name: SteamMain
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.SteamSettings
+  applicationId: 480
+  callbackTick_Milliseconds: 15
+  isDebugging: 1
+  server:
+    autoInitialize: 1
+    autoLogon: 0
+    ip: 0
+    queryPort: 27016
+    gamePort: 27015
+    serverVersion: 1.0.0.0
+    spectatorPort: 27017
+    usingGameServerAuthApi: 1
+    enableHeartbeats: 1
+    supportSpectators: 0
+    spectatorServerName: Usually GameDescription + Spectator
+    anonymousServerLogin: 1
+    gameServerToken: See https://steamcommunity.com/dev/managegameservers
+    isPasswordProtected: 0
+    serverName: My Server Name
+    gameDescription: Usually the name of your game
+    gameDirectory: e.g. its folder name
+    isDedicated: 1
+    maxPlayerCount: 4
+    botPlayerCount: 0
+    mapName: 
+    gameData: 
+    rulePairs: []
+  client:
+    actionSets:
+    - {fileID: 8738910469260413048}
+    - {fileID: 2618012135671060515}
+    actionSetLayers:
+    - {fileID: 4915561725354443378}
+    actions:
+    - {fileID: -6634375376915176214}
+    - {fileID: -9083761058935857313}
+    - {fileID: -6194961998222170762}
+    - {fileID: -7586749589795976714}
+    - {fileID: 3907974212118666244}
+    - {fileID: -8626679218451038395}
+    - {fileID: 2846251113390129418}
+    - {fileID: -4453579329745014787}
+    - {fileID: -326600000575602546}
+    - {fileID: -1402885460712794862}
+    - {fileID: -1425089029179993062}
+    - {fileID: -3722123063667875975}
+    - {fileID: -782411012424460061}
+    inventory:
+      items: []
+      runTimeUpdateItemDefinitions: 0
+  stats:
+  - {fileID: -8733567556866382149}
+  - {fileID: 9167538003734680122}
+  - {fileID: 2774011199260400619}
+  - {fileID: 5824142691712641633}
+  - {fileID: -8999730666946829284}
+  - {fileID: -5037848677785503180}
+  - {fileID: -6091189459371398433}
+  achievements:
+  - {fileID: 5895874683565187008}
+  - {fileID: -3961327671048134529}
+  - {fileID: 3181861476018832472}
+  - {fileID: 1225793968543355510}
+  - {fileID: -2922288281124395891}
+  dlc:
+  - {fileID: 4796929363246027299}
+  - {fileID: 6900637315452384783}
+  leaderboards:
+  - {fileID: -4983887044868387655}
+--- !u!114 &1225793968543355510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875677f33105c5b45bb7e7641fc75837, type: 3}
+  m_Name: '[Ach] ACH_WIN_ONE_GAME'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AchievementObject
+  data:
+    id: ACH_WIN_ONE_GAME
+--- !u!114 &2618012135671060515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76e6cc6befcefe49bd99c6ddff7c712, type: 3}
+  m_Name: '[Input-Set] ship_controls'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputActionSet
+  setName: ship_controls
+--- !u!114 &2774011199260400619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfbe0990cdb5a54a98b11060366bc10, type: 3}
+  m_Name: '[Stat Float] MaxFeetTraveled'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.FloatStatObject
+  data:
+    id: MaxFeetTraveled
+--- !u!114 &2846251113390129418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_left'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_left
+--- !u!114 &3181861476018832472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875677f33105c5b45bb7e7641fc75837, type: 3}
+  m_Name: '[Ach] ACH_WIN_100_GAMES'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AchievementObject
+  data:
+    id: ACH_WIN_100_GAMES
+--- !u!114 &3907974212118666244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f022fbdb792e8e4c99b1ec28776380c, type: 3}
+  m_Name: '[Input-Action] menu_cancel'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputAction
+  type: 1
+  actionName: menu_cancel
+--- !u!114 &4796929363246027299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e866e8a4a73be184fa6f7779f4583d58, type: 3}
+  m_Name: '[DLC] pieterw test DLC'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.DownloadableContentObject
+  data:
+    id: 110902
+--- !u!114 &4915561725354443378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321a11f9b2b322e4087dbc68a7902c7c, type: 3}
+  m_Name: '[Input-SetLayer] thrust_action_layer'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputActionSetLayer
+  layerName: thrust_action_layer
+--- !u!114 &5824142691712641633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c85766c32eadc4e8a72da7933e8fab, type: 3}
+  m_Name: '[Stat Int] NumGames'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.IntStatObject
+  data:
+    id: NumGames
+--- !u!114 &5895874683565187008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875677f33105c5b45bb7e7641fc75837, type: 3}
+  m_Name: '[Ach] ACH_TRAVEL_FAR_ACCUM'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.AchievementObject
+  data:
+    id: ACH_TRAVEL_FAR_ACCUM
+--- !u!114 &6900637315452384783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e866e8a4a73be184fa6f7779f4583d58, type: 3}
+  m_Name: '[DLC] ticket test DLC'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.DownloadableContentObject
+  data:
+    id: 447130
+--- !u!114 &8738910469260413048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76e6cc6befcefe49bd99c6ddff7c712, type: 3}
+  m_Name: '[Input-Set] menu_controls'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.InputActionSet
+  setName: menu_controls
+--- !u!114 &9167538003734680122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfbe0990cdb5a54a98b11060366bc10, type: 3}
+  m_Name: '[Stat Float] FeetTraveled'
+  m_EditorClassIdentifier: Heathen.Steamworks::Heathen.SteamworksIntegration.FloatStatObject
+  data:
+    id: FeetTraveled
